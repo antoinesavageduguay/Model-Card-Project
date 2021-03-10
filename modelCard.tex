@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% Used in the explanation text
+\usepackage[colorlinks]{hyperref}
+
+% Used by the template
+\usepackage{setspace}
+\usepackage{changepage} % to adjust margins
+\usepackage[breakable]{tcolorbox}
+\usepackage{float} % for tables inside tcolorbox https://tex.stackexchange.com/a/274342
+\usepackage{enumitem}
+
+
+\begin{document}
+
+\newenvironment{mcsection}[1]
+    {%
+        \textbf{#1}
+
+        % Reduce margins to use the space more effectively and help fit in the recommended "one to two pages"
+        % Use the bullet list format as shown in the model card paper to increase readability
+        \begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,after=\vspace{\medskipamount}]
+    }
+    {%
+        \end{itemize}
+    }
+
+% Optional: reduce margins single line to fit in "one to two pages", as recommended
+\begin{adjustwidth}{-60pt}{-70pt}
+\begin{singlespace}
+
+\tcbset{colback=white!10!white}
+\begin{tcolorbox}[title=\textbf{Model Card -Antoine Savage-Duguay},
+    breakable, sharp corners, boxrule=0.7pt]
+
+% Change to a smaller, but still legible font size to help fit in the recommended "one to two pages"
+\small{
+
+\begin{mcsection}{Model Details}
+    \item Prédiction du revenu d'un individu par classe ($> \ or \ \leq 50000 $) selon certaines caractéristique 
+    \item Model développé par Antoine Savage-Duguay, étudiant à l'Université de Montréal, en Mars 2021.
+    \item Régression logistique
+\end{mcsection}
+
+\begin{mcsection}{Intended Use}
+    \item Le modèle à été créée à des fins académiques, et vise à explorer l'efficacité d'un algorithme d'apprentissage machine, ainsi que les potentiels enjeux pouvant émaner de l'implantation de cet algorithme.
+\end{mcsection}
+
+\begin{mcsection}{Factors}
+    \item Les \textbf{facteurs pertinents} sont intrinsèquement dans la base de données, celle-ci étant déjà séparé en groupe d'individus soit : l'âge, le niveau d'éducation, le statut matrimonial, la relation conjugale actuelle, le sexe et la race. 
+    \item Seulement les variables ayant le plus d'impacts sur le modèle ont été retenu, pour un meilleur "fit". Les \textbf{facteurs d'évaluation} seront donc:le niveau d'éducation, le statut matrimonial, le sexe et la race. Des facteurs d'évaluation croisé (\textbf{i.e.} sexe-race) seront également évalués.
+    
+    \item Il est important de souligner que \textbf{l'environnement} dans lequel les données d'entrainement du modèle date de 1994 et ont été récoltées seulement aux États-Unis.
+\end{mcsection}
+
+\begin{mcsection}{Metrics}
+    \item Metrics 1....
+\end{mcsection}
+
+\begin{mcsection}{Training Data}
+    \item Training data 1...
+\end{mcsection}
+
+\pagebreak
+
+\begin{mcsection}{Evaluation Data}
+    \item Evaluation data 1....
+\end{mcsection}
+
+\begin{mcsection}{Ethical Considerations}
+    \item Ethical considerations 1....
+\end{mcsection}
+
+\begin{mcsection}{Caveats and Recommendations}
+\item
+\includegraphics[width=1\textwidth,]{histogram.png}\\[0cm]
+\end{mcsection}
+
+\textbf{Quantitative Analyses}
+
+% Sample table inside tcolorbox
+\begin{table}[H]
+\centering
+\small{
+\begin{tabular}{lr}
+Measurement 1       & 0.751  \\
+Measurement 2       & 0.762 \\
+Measurement 3       & 0.773 \\
+Measurement 4       & 0.784 \\
+Measurement average & 0.768  \\ \hline
+\textbf{Model measurement}  & \textbf{0.791} \\ \hline
+\end{tabular} } \\
+\caption[Short caption used in list of tables.]{\small{Longer caption to explain what the measurements are.}}
+\end{table}
+
+} % end font size change
+\end{tcolorbox}
+\end{singlespace}
+\end{adjustwidth}
+
+\end{document}
