@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[headheight=0pt,headsep=0pt]{geometry}
+\addtolength{\topmargin}{-60pt}
+\addtolength{\textheight}{130pt}
+% Used in the explanation text
+\usepackage[colorlinks]{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+
+% Used by the template
+\usepackage{setspace}
+\usepackage{subfigure}
+\usepackage{changepage} % to adjust margins
+\usepackage[breakable]{tcolorbox}
+\usepackage{float} % for tables inside tcolorbox https://tex.stackexchange.com/a/274342
+\usepackage{enumitem}
+
+
+\begin{document}
+
+\newenvironment{mcsection}[1]
+    {%
+        \textbf{#1}
+
+        % Reduce margins to use the space more effectively and help fit in the recommended "one to two pages"
+        % Use the bullet list format as shown in the model card paper to increase readability
+        \begin{itemize}[leftmargin=*,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,after=\vspace{\medskipamount}]
+    }
+    {%
+        \end{itemize}
+    }
+
+% Optional: reduce margins single line to fit in "one to two pages", as recommended
+\begin{adjustwidth}{-60pt}{-70pt}
+\begin{singlespace}
+
+\tcbset{colback=white!10!white}
+\begin{tcolorbox}[title=\textbf{Model Card -Antoine Savage-Duguay},
+    breakable, sharp corners, boxrule=0.7pt]
+
+% Change to a smaller, but still legible font size to help fit in the recommended "one to two pages"
+\small{
+
+\begin{mcsection}{Détails du modèle}
+    \item Prédiction du revenu d'un individu par classe ($> \ or \ \leq 50000 $) selon certaines caractéristique 
+    \item Model développé par Antoine Savage-Duguay, étudiant à l'Université de Montréal, en Mars 2021.
+    \item Régression logistique
+\end{mcsection}
+
+\begin{mcsection}{Usage prévu}
+    \item Le modèle à été créé à des fins académiques, et vise à explorer l'efficacité d'un algorithme d'apprentissage machine, ainsi que les potentiels enjeux pouvant émaner de l'implantation de cet algorithme.
+\end{mcsection}
+
+\begin{mcsection}{Facteurs}
+    \item Les \textbf{facteurs pertinents} sont intrinsèquement dans la base de données, celle-ci étant déjà séparé en groupe d'individus soit : l'âge, le niveau d'éducation, le statut matrimonial, la relation conjugale actuelle, le sexe et la race, le pays d'origine et le type de travail effectué
+    \item Seulement les variables ayant le plus d'impacts sur le modèle ont été retenu, pour un meilleur "fit". Les \textbf{facteurs d'évaluation} seront donc:l'âge, le niveau d'éducation, le statut matrimonial, le sexe et la race. 
+    
+    \item Il est important de souligner que \textbf{l'environnement} dans lequel les données d'entrainement du modèle date de 1994 et ont été récoltées seulement aux États-Unis.
+\end{mcsection}
+
+\begin{mcsection}{Mesures de performance}
+    \item Le nombre de groupes étant important, la matrice de confusion global pour l'ensemble des sous-groupes sera d'abord présenté. 
+    \item La précision du modèle en fonction des différents sous-groupes sera ensuite présenté. 
+    \item Finalement, le nombre de faux-positifs semblant important dans notre modèle, cette mesure d'erreur sera présenté selon différents sous-groupes dans le dernier graphique.
+\end{mcsection}
+
+\begin{mcsection}{Données d'entrainement et d'évaluation}
+    \item Le jeu de données est public et peu être obtenu à l'adresse suivante: "https://www.kaggle.com/wenruliu/adult-income-dataset"
+    \item Les données ont ensuite été séparé de manière aléatoire dans un groupe d'entrainement et un groupe de test (répartion 80\%-20\%)
+\end{mcsection}
+
+\pagebreak
+
+
+\begin{mcsection}{Considération éthique}
+    \item Les données ne sont pas balancé de manière adéquate entre les différents groupes, pouvant mener à des erreurs.
+\end{mcsection}
+
+\begin{mcsection}{Mises en garde et recommendations }
+\item Bien que l'efficacité du modèle soit relativement bonne, le taux de faux positifs semblent assez élevé pour certaine catégorie, certainement du au fait que les données n'était pas bien balancé (peu d'individu faisait plus de 50 000\$ par année, plus de male que de non-male,...).
+\item D'autres modèle devrait être testé à des fins de comparaisons.
+
+\end{mcsection}
+
+\textbf{Analyse Quantitative}
+    $$confusion \ matrix \ : \ \begin{vmatrix}
+        4555 & 391 \\
+        863 & 704 
+    \end{vmatrix}$$
+
+
+\includegraphics[height=2.4cm]{accuracy.png}\\[0.3cm]
+\includegraphics[height=2.4cm]{false_pos.png}\\[0.2cm]
+
+
+} % end font size change
+\end{tcolorbox}
+\end{singlespace}
+\end{adjustwidth}
+
+\end{document}
